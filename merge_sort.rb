@@ -6,7 +6,7 @@ def sort(arr)
 
   half = arr.length / 2
   arr_left = arr[0...half]
-  arr_right = arr[half..arr.length]
+  arr_right = arr[half...arr.length]
   merge(sort(arr_left), sort(arr_right))
 end
 
