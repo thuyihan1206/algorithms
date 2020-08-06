@@ -27,4 +27,4 @@ def partition(arr, left, right)
 end
 
 arr = [1, 3, 98, 2, 3, 6, 4, 0, 1]
-p sort(arr)
+p sort(arr) # => [0, 1, 1, 2, 3, 3, 4, 6, 98]
