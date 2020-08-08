@@ -5,11 +5,12 @@ def search_index(arr, target, left = 0, right = arr.length - 1)
   return -1 if left > right # -1 means no found
 
   half = (left + right) / 2
-  return half if arr[half] == target
-
-  if target < arr[half]
+  case target <=> arr[half]
+  when 0
+    half
+  when -1
     search_index(arr, target, left, half - 1)
-  else
+  when 1
     search_index(arr, target, half + 1, right)
   end
 end
