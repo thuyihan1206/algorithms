@@ -4,8 +4,6 @@ require_relative './binary_tree'
 
 # Class for a binary search tree
 class BinarySearchTree < BinaryTree
-  attr_accessor :root
-
   def add_node(value, local_root = @root)
     if local_root.nil?
       local_root = Node.new(value)

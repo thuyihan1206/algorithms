@@ -4,8 +4,6 @@ require_relative './node'
 
 # Class for a binary tree
 class BinaryTree
-  attr_accessor :root
-
   def height(local_root = @root)
     return 0 if local_root.nil?
 

@@ -15,8 +15,9 @@ class MinHeap
 
   def remove_node
     @arr.shift # removal is always from the top
-    value = @arr.pop # move last node to the top
-    @arr.unshift value if value
+    return unless @arr.length > 1
+
+    @arr.unshift @arr.pop # move last node to the top
     bubble_down(0)
   end
 
