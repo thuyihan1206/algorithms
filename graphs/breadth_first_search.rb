@@ -30,6 +30,9 @@ directed_adj_matrix = [
 result, visited_order = bfs(directed_adj_matrix, 0, 3)
 puts "#{result ? 'Found it' : 'Did not find it'}: visited order was: #{visited_order.join(', ')}."
 # => Found it: visited order was 0, 2, 4, 3.
+_result, visited_order = bfs(directed_adj_matrix, 0, 100)
+puts "Traversal order was: #{visited_order.join(', ')}."
+# => Traversal order was: 0, 2, 4, 3, 5.
 
 puts '-------------'
 non_directed_adj_matrix = [
@@ -44,3 +47,6 @@ non_directed_adj_matrix = [
 result, visited_order = bfs(non_directed_adj_matrix, 0, 3)
 puts "#{result ? 'Found it' : 'Did not find it'}: visited order was: #{visited_order.join(', ')}."
 # => Found it: visited order was 0, 2, 4, 1, 3.
+_result, visited_order = bfs(non_directed_adj_matrix, 0, 100)
+puts "Traversal order was: #{visited_order.join(', ')}."
+# => Traversal order was: 0, 2, 4, 1, 3, 5.
