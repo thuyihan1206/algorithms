@@ -1,22 +1,15 @@
 # frozen_string_literal: true
 
-# Class for a tree node
-class Node
-  attr_accessor :value, :left, :right
+require_relative './binary_tree'
 
-  def initialize(value)
-    @value = value
-  end
-end
-
-# Class for a Binary Search Tree
-class Tree
+# Class for a binary search tree
+class BinarySearchTree < BinaryTree
   attr_accessor :root
 
   def add_node(value, local_root = @root)
     if local_root.nil?
       local_root = Node.new(value)
-      @root = local_root if @root.nil? # set root for the tree
+      @root ||= local_root # set root for the tree
     else
       case value <=> local_root.value
       when 0
@@ -63,35 +56,7 @@ class Tree
     inorder_traverse(local_root.left) + [local_root.value] + inorder_traverse(local_root.right)
   end
 
-  def height(local_root = @root)
-    return 0 if local_root.nil?
-
-    1 + [height(local_root.left), height(local_root.right)].max
-  end
-
-  def size(local_root = @root)
-    return 0 if local_root.nil?
-
-    1 + size(local_root.left) + size(local_root.right)
-  end
-
-  def to_s
-    level_traverse.reduce('') do |str, element|
-      str + "#{element}\n"
-    end
-  end
-
   private
-
-  def level_traverse(local_root = @root, level = 0, output = [])
-    return [] if local_root.nil?
-
-    output << [] if output.length == level # add a new array for the next level
-    output[level] << local_root.value
-    level_traverse(local_root.left, level + 1, output)
-    level_traverse(local_root.right, level + 1, output)
-    output
-  end
 
   def remove(node)
     return node.left if node.right.nil? # node.left is okay to be nil
@@ -116,7 +81,7 @@ class Tree
   end
 end
 
-tree = Tree.new
+tree = BinarySearchTree.new
 [1, 5, 3, 6, 23, 54, 0, 2, 4].each { |value| tree.add_node(value) }
 # tree looks like this
 #      1
