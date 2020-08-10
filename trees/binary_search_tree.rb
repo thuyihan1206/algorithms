@@ -26,7 +26,9 @@ class BinarySearchTree < BinaryTree
 
     case value <=> local_root.value
     when 0
+      set_root = local_root.equal? @root
       local_root = remove(local_root)
+      @root = local_root if set_root # reset root if local_root was root
     when -1
       local_root.left = remove_node(value, local_root.left)
     when 1
@@ -56,6 +58,7 @@ class BinarySearchTree < BinaryTree
 
   private
 
+  # return the modified local root that does not contain node
   def remove(node)
     return node.left if node.right.nil? # node.left is okay to be nil
     return node.right if node.left.nil?
