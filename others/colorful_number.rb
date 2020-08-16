@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-# Colorful Number: When in a given number, product of every digit of a sub-sequence are different.
+# colorful Number is a number where all products of digit combination are different.
 def colorful?(number)
   set = power_set(digits(number))
-  hash = {}
-  set.each do |element|
+  set.each_with_object({}) do |element, hash|
     next if element.empty? # ignore empty set
 
     product = element.reduce(:*)
@@ -17,7 +16,7 @@ end
 
 # returns an array of digit representation
 def digits(number)
-  raise 'number must be an integer' unless number.is_a?(Integer)
+  raise 'input must be an integer' unless number.is_a?(Integer)
   return [number] if number < 10
 
   digits(number / 10) + [number % 10]
@@ -26,7 +25,7 @@ end
 # creates a power set of an array of elements
 # for example, a power set of ['a', 'b', c'] is [[], ['a'], ['b'], ['c'], ['a', 'b'], ['b', 'c'], ['a', 'c'], ['a', 'b', 'c']]
 def power_set(array)
-  raise 'array must be an array' unless array.is_a?(Array)
+  raise 'input must be an array' unless array.is_a?(Array)
 
   combination(array, Array.new(array.length), array.length - 1)
 end
