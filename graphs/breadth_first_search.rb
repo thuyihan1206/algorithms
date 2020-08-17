@@ -4,16 +4,21 @@
 # note: we check if a vertex has been visited before enqueueing
 def bfs(adj_matrix, source_vertex, target_vertex)
   queue = [source_vertex]
-  visited = {} # used to keep track of visited order
+  visited = [] # used to keep track of visited order
+  discovered = Array.new(adj_matrix.length, false)
+  discovered[source_vertex] = true
   loop do
     current_vertex = queue.shift
-    return false, visited.keys if current_vertex.nil?
+    return false, visited if current_vertex.nil?
 
-    visited[current_vertex] = true
-    return true, visited.keys if current_vertex == target_vertex
+    visited << current_vertex
+    return true, visited if current_vertex == target_vertex
 
     (0...adj_matrix.length).to_a.each do |other_vertex|
-      queue << other_vertex if !visited[other_vertex] && adj_matrix[current_vertex][other_vertex] == 1
+      next if discovered[other_vertex] || adj_matrix[current_vertex][other_vertex].zero?
+
+      queue << other_vertex
+      discovered[other_vertex] = true
     end
   end
 end

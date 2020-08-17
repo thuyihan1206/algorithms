@@ -4,18 +4,22 @@
 # note: we check if a vertex has been visited after popping
 def dfs(adj_matrix, source_vertex, target_vertex)
   stack = [source_vertex]
-  visited = {} # used to keep track of visited order
+  visited = [] # used to keep track of visited order
+  discovered = Array.new(adj_matrix.length, false)
   loop do
     current_vertex = stack.pop
-    return false, visited.keys if current_vertex.nil?
+    return false, visited if current_vertex.nil?
 
-    next if visited[current_vertex]
+    next if discovered[current_vertex]
 
-    visited[current_vertex] = true
-    return true, visited.keys if current_vertex == target_vertex
+    discovered[current_vertex] = true
+    visited << current_vertex
+    return true, visited if current_vertex == target_vertex
 
     (0...adj_matrix.length).to_a.each do |other_vertex|
-      stack << other_vertex if adj_matrix[current_vertex][other_vertex] == 1
+      next if adj_matrix[current_vertex][other_vertex].zero?
+
+      stack << other_vertex
     end
   end
 end
