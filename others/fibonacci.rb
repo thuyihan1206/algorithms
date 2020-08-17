@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# O(n) Fibonacci calculator
+# O(n) Fibonacci generator
 def fib(n, hash = {})
   return n if n <= 1
 

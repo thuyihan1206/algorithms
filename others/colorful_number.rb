@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# colorful Number is a number where all products of digit combination are different.
+# a number is colorful if all products of its digit combination are different
 def colorful?(number)
   set = power_set(digits(number))
   set.each_with_object({}) do |element, hash|
