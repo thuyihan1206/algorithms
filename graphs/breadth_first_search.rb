@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # breadth first search
-# note: we check if a vertex has been visited before enqueueing
+# note: we check if a vertex has been discovered before enqueueing
 def bfs(adj_matrix, source_vertex, target_vertex)
   queue = [source_vertex]
   visited = [] # used to keep track of visited order
