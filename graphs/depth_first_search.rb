@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # depth first search
-# note: we check if a vertex has been visited after popping
+# note: we check if a vertex has been discovered after popping
 def dfs(adj_matrix, source_vertex, target_vertex)
   stack = [source_vertex]
   visited = [] # used to keep track of visited order
