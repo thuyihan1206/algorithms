@@ -27,7 +27,7 @@ class BinaryTree
   def level_traverse(local_root = @root, level = 0, output = [])
     return [] if local_root.nil?
 
-    output << [] if output.length == level # add a new array for the next level
+    output[level] ||= []
     output[level] << local_root.value
     level_traverse(local_root.left, level + 1, output)
     level_traverse(local_root.right, level + 1, output)
