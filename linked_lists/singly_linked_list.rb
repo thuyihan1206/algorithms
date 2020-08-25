@@ -6,7 +6,6 @@ require_relative './node'
 class SinglyLinkedList
   def create_list(arr)
     node = nil
-
     until arr.empty?
       value = arr.shift
       next @head = node = Node.new(value) if node.nil?
@@ -14,11 +13,12 @@ class SinglyLinkedList
       node.next = Node.new(value)
       node = node.next
     end
+    @head
   end
 
   def reverse_iterative!(current = @head)
     prev = nil
-    until current.nil?
+    while current
       temp = current.next
       current.next = prev
       prev = current
@@ -35,8 +35,7 @@ class SinglyLinkedList
     reverse_recursiev!(temp, current)
   end
 
-  def to_s
-    node = @head
+  def to_s(node = @head)
     arr = []
     while node
       arr << node.value
