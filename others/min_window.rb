@@ -11,11 +11,18 @@ def min_window(s, t)
     t_hash[c] += 1
   end
 
+  filtered_s = [] # record chars and indexes that are present in T from S
+  s.each_char.with_index do |char, index|
+    next unless t_hash[char]
+
+    filtered_s << [char, index]
+  end
+
   left_start = nil
   count = 0
   min_window = nil
 
-  s.each_char.with_index do |c, right_index|
+  filtered_s.each do |(c, right_index)|
     next unless t_hash[c]
 
     left_start ||= right_index
@@ -23,8 +30,6 @@ def min_window(s, t)
     t_hash[c] -= 1
 
     next unless count == t_hash.length
-
-    min_window = s[left_start..right_index] if min_window.nil? || right_index - left_start + 1 < min_window.length
 
     while count == t_hash.length
       if t_hash[s[left_start]]
@@ -34,7 +39,7 @@ def min_window(s, t)
       left_start += 1
     end
     left_index = left_start - 1 # back one to include the valid character
-    min_window = s[left_index..right_index] if right_index - left_index + 1 < min_window.length
+    min_window = s[left_index..right_index] if min_window.nil? || right_index - left_index + 1 < min_window.length
   end
   min_window
 end
