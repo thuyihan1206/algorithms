@@ -24,7 +24,7 @@ def min_window(s, t)
 
     next unless count == t_hash.length
 
-    min_window = s[left_start..right_index] # found min_window the first time
+    min_window = s[left_start..right_index] if min_window.nil? || right_index - left_start + 1 < min_window.length
 
     while count == t_hash.length
       if t_hash[s[left_start]]
@@ -46,3 +46,4 @@ p min_window('ecbefebce', 'fd') # => nil
 p min_window('dcbefedce', 'fdd') # => "dcbefed"
 p min_window('dcbefebce', 'bcdecebfe') # => "dcbefebce"
 p min_window('dcbefedce', 'fddfddfddfdd') # => nil
+p min_window('cabwefgewcwaefgcf', 'cae') # => 'cwae'
