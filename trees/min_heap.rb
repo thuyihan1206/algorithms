@@ -21,6 +21,10 @@ class MinHeap
     bubble_down(0)
   end
 
+  def top
+    @arr.first
+  end
+  
   def height
     Math.log2(size + 1).ceil
   end
