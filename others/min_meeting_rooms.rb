@@ -25,4 +25,4 @@ def min_meeting_rooms(intervals)
   count
 end
 
-p min_meeting_rooms([[2, 15], [36, 45], [9, 29], [16, 23], [4, 9]]) # -> 2
+p min_meeting_rooms([[2, 15], [36, 45], [9, 29], [16, 23], [4, 9]]) # => 2
